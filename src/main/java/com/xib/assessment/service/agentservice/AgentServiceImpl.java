@@ -71,6 +71,18 @@ public class AgentServiceImpl implements AgentService {
         return handleAgentCreation(agentDTO);
     }
 
+    @Override
+    public APIResponse assignManagerToAgent(Long agentId, Long managerId) {
+        try {
+            Agent agent = getAgent(agentId);
+            Manager manager = getManager(managerId);
+            addManagerToAgent(agent, manager);
+            return buildSuccessResponse(null);
+        } catch (IllegalArgumentException e) {
+            return buildErrorResponse(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     private APIResponse handleAgentCreation(AgentDTO agentDTO) {
         try {
             validateAgentTeamAndManager(agentDTO);
@@ -95,6 +107,11 @@ public class AgentServiceImpl implements AgentService {
                 .orElseThrow(() -> new IllegalArgumentException(AppConstants.HTTP_MESSAGES.NOT_FOUND));
     }
 
+    private Agent getAgent(Long agent) {
+        return agentRepository.findById(agent)
+                .orElseThrow(() -> new IllegalArgumentException(AppConstants.HTTP_MESSAGES.NOT_FOUND));
+    }
+
     private Manager getManager(Long managerId) {
         return managerRepository.findById(managerId)
                 .orElseThrow(() -> new IllegalArgumentException(AppConstants.HTTP_MESSAGES.NOT_FOUND));
@@ -106,6 +123,11 @@ public class AgentServiceImpl implements AgentService {
 
     private APIResponse buildErrorResponse(String errorMessage, HttpStatus status) {
         return APIResponse.builder().code(status.value()).error(errorMessage).build();
+    }
+
+    private void addManagerToAgent(Agent agent, Manager manager) {
+        agent.setManager(manager);
+        agentRepository.save(agent);
     }
 }
 

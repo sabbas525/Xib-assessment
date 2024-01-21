@@ -31,4 +31,12 @@ public interface AgentService {
      * @return an APIResponse confirming the creation of the agent
      */
     APIResponse createAgent(AgentDTO agentDTO);
+    /**
+     * Assigns a manager to a agent.
+     *
+     * @param agentId the ID of the agent
+     * @param managerId the ID of the manager
+     * @return an APIResponse confirming the assignment
+     */
+    APIResponse assignManagerToAgent(Long agentId, Long managerId);
 }

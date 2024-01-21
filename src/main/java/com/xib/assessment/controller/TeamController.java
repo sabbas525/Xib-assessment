@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/teams")
+@RequestMapping("/team-controller")
 public class TeamController {
 
     @Autowired
@@ -19,7 +19,7 @@ public class TeamController {
      *
      * @return a ResponseEntity containing the list of teams
      */
-    @GetMapping
+    @GetMapping("/teams")
     public ResponseEntity<?> getAllTeams() {
         return ResponseEntity.ok(teamService.findAllTeams());
     }
@@ -30,7 +30,7 @@ public class TeamController {
      * @param id the ID of the team
      * @return a ResponseEntity containing the team's details
      */
-    @GetMapping("/{id}")
+    @GetMapping("/team/{id}")
     public ResponseEntity<?> getTeam(@PathVariable Long id) {
         return ResponseEntity.ok(teamService.findTeamById(id));
     }
@@ -41,7 +41,7 @@ public class TeamController {
      * @param teamDTO the team data transfer object containing the team's information
      * @return a ResponseEntity indicating the result of the operation
      */
-    @PostMapping
+    @GetMapping("/team")
     public ResponseEntity<?> createTeam(@RequestBody TeamDTO teamDTO) {
         return ResponseEntity.ok(teamService.createTeam(teamDTO));
     }
@@ -63,7 +63,7 @@ public class TeamController {
      * @param managerId the ID of the manager
      * @return a ResponseEntity indicating the result of the operation
      */
-    @PutMapping("/{teamId}/manager/{managerId}")
+    @PutMapping("/assign-manager/{teamId}/manager/{managerId}")
     public ResponseEntity<?> assignManagerToTeam(@PathVariable Long teamId, @PathVariable Long managerId) {
         return ResponseEntity.ok(teamService.assignManagerToTeam(teamId, managerId));
     }
@@ -75,7 +75,7 @@ public class TeamController {
      * @param agentId the ID of the agent
      * @return a ResponseEntity indicating the result of the operation
      */
-    @PutMapping("/{teamId}/agent")
+    @PutMapping("/assign-agent/{teamId}/agent")
     public ResponseEntity<?> assignAgentToTeam(@PathVariable Long teamId,
                                                @RequestParam("agentId") Long agentId) {
         return ResponseEntity.ok(teamService.assignAgentToTeam(teamId, agentId));

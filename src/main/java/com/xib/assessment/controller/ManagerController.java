@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/managers")
+@RequestMapping("/manager-controller")
 public class ManagerController {
 
     @Autowired
@@ -20,7 +20,7 @@ public class ManagerController {
      * @param managerDTO the manager data transfer object containing the manager's information
      * @return a ResponseEntity indicating the result of the operation
      */
-    @PostMapping
+    @PostMapping("/manager")
     public ResponseEntity<?> createManager(@RequestBody ManagerDTO managerDTO) {
         return ResponseEntity.ok(managerService.createManager(managerDTO));
     }
@@ -30,7 +30,7 @@ public class ManagerController {
      *
      * @return a ResponseEntity containing the list of agents
      */
-    @GetMapping
+    @GetMapping("/managers")
     public ResponseEntity<?> getAllManagers() {
         return ResponseEntity.ok(managerService.findAllManagers());
     }

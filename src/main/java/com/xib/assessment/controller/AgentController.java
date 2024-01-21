@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * Provides API endpoints for creating, retrieving, and assigning agents.
  */
 @RestController
-@RequestMapping("/agents")
+@RequestMapping("/agent-controller")
 public class AgentController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class AgentController {
      * @param pageSize the size of each page (optional)
      * @return a ResponseEntity containing the list of agents
      */
-    @GetMapping
+    @GetMapping("/agents")
     public ResponseEntity<?> getAllAgents(@RequestParam(value = "pageNumber", required = false) Integer pageNumber,
                                           @RequestParam(value = "pageSize", required = false) Integer pageSize) {
         return ResponseEntity.ok(agentService.findAllAgents(pageNumber, pageSize));
@@ -36,7 +36,7 @@ public class AgentController {
      * @param id the ID of the agent
      * @return a ResponseEntity containing the agent's details
      */
-    @GetMapping("/{id}")
+    @GetMapping("/agent/{id}")
     public ResponseEntity<?> getAgent(@PathVariable Long id) {
         return ResponseEntity.ok(agentService.findAgentById(id));
     }
@@ -46,10 +46,20 @@ public class AgentController {
      * @param agentDTO the agent data transfer object containing the agent's information
      * @return a ResponseEntity indicating the result of the operation
      */
-    @PostMapping
+    @PostMapping("/agent")
     public ResponseEntity<?> createAgent(@RequestBody AgentDTO agentDTO) {
         return ResponseEntity.ok(agentService.createAgent(agentDTO));
     }
 
-
+    /**
+     * Assigns a manager to a specified agent.
+     *
+     * @param agentId    the ID of the agent
+     * @param managerId the ID of the manager
+     * @return a ResponseEntity indicating the result of the operation
+     */
+    @PutMapping("/assign-manager/{agentId}/manager/{managerId}")
+    public ResponseEntity<?> assignManagerToAgent(@PathVariable Long agentId, @PathVariable Long managerId) {
+        return ResponseEntity.ok(agentService.assignManagerToAgent(agentId, managerId));
+    }
 }
