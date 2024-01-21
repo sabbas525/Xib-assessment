@@ -5,6 +5,10 @@ import com.xib.assessment.mapper.managermapper.ManagerDTO;
 import com.xib.assessment.mapper.teammapper.TeamDTO;
 import lombok.*;
 
+/**
+ * Data Transfer Object (DTO) for Agent.
+ * Used to transfer agent data between layers without exposing the domain model.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

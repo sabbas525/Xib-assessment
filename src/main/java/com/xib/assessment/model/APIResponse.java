@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import java.io.Serializable;
-
+/**
+ * Generic response wrapper used for API responses.
+ * Includes status code, message, and optional warning, error, and data fields.
+ */
 @Getter
 @Setter
 @Builder

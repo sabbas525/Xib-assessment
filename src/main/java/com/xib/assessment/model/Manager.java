@@ -4,7 +4,10 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
-
+/**
+ * Represents a Manager entity in the system.
+ * Contains basic personal information and a list of managed Teams.
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

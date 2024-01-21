@@ -18,11 +18,22 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Centralized exception handling across all @RequestMapping methods in @Controller classes.
+ * Provides specific handlers for different types of exceptions.
+ */
 @RestControllerAdvice
 @RequiredArgsConstructor
-public class ErrorAdvice {//Following Class Is Used To Handle Bad Request For The Application
+public class ErrorAdvice {
     ResponseObject errorResponse = new ResponseObject(); //Injected Object
 
+    /**
+     * Handles InvalidFormatExceptions thrown by the application.
+     *
+     * @param ex                 The caught InvalidFormatException.
+     * @param httpServletRequest The incoming HTTP request.
+     * @return A ResponseEntity containing the error details.
+     */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(InvalidFormatException.class)
     public ResponseEntity<?> formatExceptionHandler(InvalidFormatException ex,
@@ -40,6 +51,13 @@ public class ErrorAdvice {//Following Class Is Used To Handle Bad Request For Th
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).headers(headers).contentType(MediaType.APPLICATION_JSON).body(errorResponse);
     }
 
+    /**
+     * Handles HttpMediaTypeNotSupportedExceptions thrown when an unsupported media type is encountered.
+     *
+     * @param ex                 The caught HttpMediaTypeNotSupportedException.
+     * @param httpServletRequest The incoming HTTP request.
+     * @return A ResponseEntity containing the error details.
+     */
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
     public ResponseEntity<Object> handleMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException ex,
                                                                        HttpServletRequest httpServletRequest) {
@@ -55,6 +73,13 @@ public class ErrorAdvice {//Following Class Is Used To Handle Bad Request For Th
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).headers(headers).contentType(MediaType.APPLICATION_JSON).body(errorResponse);
     }
 
+    /**
+     * Handles MethodArgumentNotValidExceptions for invalid method arguments.
+     *
+     * @param ex                 The caught MethodArgumentNotValidException.
+     * @param httpServletRequest The incoming HTTP request.
+     * @return A ResponseEntity containing the error details.
+     */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> MethodArgumentNotValidExceptionHandler(MethodArgumentNotValidException ex,
@@ -75,6 +100,13 @@ public class ErrorAdvice {//Following Class Is Used To Handle Bad Request For Th
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).headers(headers).contentType(MediaType.APPLICATION_JSON).body(errorResponse);
     }
 
+    /**
+     * Handles MissingServletRequestPartException which occurs when a part of a multipart request not found.
+     *
+     * @param ex                 The caught MissingServletRequestPartException.
+     * @param httpServletRequest The incoming HTTP request.
+     * @return A ResponseEntity containing the error details.
+     */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MissingServletRequestPartException.class)
     public ResponseEntity<?> MissingServletRequestPartExceptionHandler(MissingServletRequestPartException ex,
@@ -96,6 +128,13 @@ public class ErrorAdvice {//Following Class Is Used To Handle Bad Request For Th
         }
     }
 
+    /**
+     * Handles HttpMessageNotReadableException which occurs when the request body is invalid or missing.
+     *
+     * @param ex                 The caught HttpMessageNotReadableException.
+     * @param httpServletRequest The incoming HTTP request.
+     * @return A ResponseEntity containing the error details.
+     */
     @ExceptionHandler(org.springframework.http.converter.HttpMessageNotReadableException.class)
     @ResponseBody
     public ResponseEntity<?> handleHttpMessageNotReadableException(org.springframework.http.converter.HttpMessageNotReadableException ex,
@@ -110,6 +149,13 @@ public class ErrorAdvice {//Following Class Is Used To Handle Bad Request For Th
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * Handles HttpRequestMethodNotSupportedException which occurs when a requested HTTP method is not supported for a specific endpoint.
+     *
+     * @param ex                 The caught HttpRequestMethodNotSupportedException.
+     * @param httpServletRequest The incoming HTTP request.
+     * @return A ResponseEntity indicating the HTTP method is not supported.
+     */
     @ExceptionHandler(org.springframework.web.HttpRequestMethodNotSupportedException.class)
     protected ResponseEntity<?> handleHttpRequestMethodNotSupportedException(
             org.springframework.web.HttpRequestMethodNotSupportedException ex,

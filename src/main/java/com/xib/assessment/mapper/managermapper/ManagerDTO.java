@@ -6,6 +6,10 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * Data Transfer Object (DTO) for Manager.
+ * Used to transfer manager data between layers without exposing the domain model.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

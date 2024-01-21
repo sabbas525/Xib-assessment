@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
+/**
+ * Represents an Agent entity in the system.
+ * Includes basic personal information and associations with Team and Manager.
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

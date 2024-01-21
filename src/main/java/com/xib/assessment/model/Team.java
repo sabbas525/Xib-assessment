@@ -6,6 +6,11 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Represents a Team entity in the system.
+ * Includes team name and a list of associated Managers.
+ * Enforces a constraint of having at most 2 managers per team.
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,5 +33,6 @@ public class Team {
         }
         this.managers = managers;
     }
-
+    @OneToMany(mappedBy = "team")
+    private List<Agent> agents;
 }
