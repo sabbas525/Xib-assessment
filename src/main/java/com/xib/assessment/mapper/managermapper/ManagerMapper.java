@@ -20,7 +20,7 @@ public class ManagerMapper {
                 .id(managerDTO.getId())
                 .firstName(managerDTO.getFirstName())
                 .lastName(managerDTO.getLastName())
-                .teams(TeamMapper.toTeamList(managerDTO.getTeamDTOs()))
+                .teams(managerDTO.getTeamDTOs() != null ? TeamMapper.toTeamList(managerDTO.getTeamDTOs()) : null)
                 .build();
     }
 

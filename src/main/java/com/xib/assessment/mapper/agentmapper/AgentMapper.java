@@ -22,8 +22,8 @@ public class AgentMapper {
                 .firstName(agentDTO.getFirstName())
                 .lastName(agentDTO.getLastName())
                 .idNumber(agentDTO.getIdNumber())
-                .team(TeamMapper.toTeam(agentDTO.getTeamDTO()))
-                .manager(ManagerMapper.toManager(agentDTO.getManagerDTO()))
+                .team(agentDTO.getTeamDTO() != null ? TeamMapper.toTeam(agentDTO.getTeamDTO()) : null)
+                .manager(agentDTO.getManagerDTO() != null ? ManagerMapper.toManager(agentDTO.getManagerDTO()) : null)
                 .build();
     }
 
@@ -51,8 +51,8 @@ public class AgentMapper {
                 .id(agent.getId())
                 .firstName(agent.getFirstName())
                 .lastName(agent.getLastName())
-                .teamDTO(TeamMapper.toTeamDTO(agent.getTeam()))
-                .managerDTO(ManagerMapper.toManagerDTO(agent.getManager()))
+                .teamDTO(agent.getTeam() != null ? TeamMapper.toTeamDTO(agent.getTeam()) : null)
+                .managerDTO(agent.getManager() != null ? ManagerMapper.toManagerDTO(agent.getManager()) : null)
                 .build();
     }
 

@@ -41,7 +41,7 @@ public class TeamController {
      * @param teamDTO the team data transfer object containing the team's information
      * @return a ResponseEntity indicating the result of the operation
      */
-    @GetMapping("/team")
+    @PostMapping("/team")
     public ResponseEntity<?> createTeam(@RequestBody TeamDTO teamDTO) {
         return ResponseEntity.ok(teamService.createTeam(teamDTO));
     }

@@ -20,8 +20,8 @@ public class TeamMapper {
         return Team.builder()
                 .id(teamDTO.getId())
                 .name(teamDTO.getName())
-                .managers(ManagerMapper.toManagerList(teamDTO.getManagerDTOs()))
-                .agents(AgentMapper.toAgentList(teamDTO.getAgentDTOs()))
+                .managers(teamDTO.getManagerDTOs() != null ? ManagerMapper.toManagerList(teamDTO.getManagerDTOs()) : null)
+                .agents(teamDTO.getAgentDTOs() != null ? AgentMapper.toAgentList(teamDTO.getAgentDTOs()) : null)
                 .build();
     }
 
