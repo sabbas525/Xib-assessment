@@ -1,0 +1,25 @@
+
+m
+java:S1192#"KDefine a constant instead of duplicating this literal "X-Endpoint" 4 times.(…İ½¹øÿÿÿÿ8¼ëúÄÒ1
+H
+java:S1452"&Remove usage of generic wildcard type.(·æÃñşÿÿÿÿ8ŠíúÄÒ1
+o	java:S100<"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À‰ƒ„ÿÿÿÿÿ8ÀíúÄÒ1
+H
+java:S1452<"&Remove usage of generic wildcard type.(À‰ƒ„ÿÿÿÿÿ8ÃíúÄÒ1
+N
+java:S1602@",Remove useless curly braces around statement(ÒÌâ–øÿÿÿÿ8ÇíúÄÒ1
+j	java:S100P"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í€âØ8ØíúÄÒ1
+C
+java:S1452P"&Remove usage of generic wildcard type.(í€âØ8İíúÄÒ1
+Y
+java:S1854g"<Remove this useless assignment to local variable "endpoint".(Áü8‘îúÄÒ1
+H
+java:S1452e"&Remove usage of generic wildcard type.(‰Í™‘ùÿÿÿÿ8¨îúÄÒ1
+J
+java:S1481g"-Remove this unused "endpoint" local variable.(Áü8¹îúÄÒ1
+Y
+java:S1854v"<Remove this useless assignment to local variable "endpoint".(Áü8ÁîúÄÒ1
+C
+java:S1452r"&Remove usage of generic wildcard type.(×¨·ª8ÂîúÄÒ1
+J
+java:S1481v"-Remove this unused "endpoint" local variable.(Áü8ÅîúÄÒ1
