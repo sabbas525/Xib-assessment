@@ -33,8 +33,7 @@ public class TeamMapper {
         return TeamDTO.builder()
                 .id(team.getId())
                 .name(team.getName())
-                .managerDTOs(ManagerMapper.toManagerDTOList(team.getManagers()))
-                .agentDTOs(AgentMapper.toAgentDTOList(team.getAgents()))
+                .managerDTOs(team.getManagers() != null ? ManagerMapper.toManagerDTOList(team.getManagers()) : null)
                 .build();
     }
 

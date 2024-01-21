@@ -37,8 +37,8 @@ public class AgentMapper {
                 .firstName(agent.getFirstName())
                 .lastName(agent.getLastName())
                 .idNumber(agent.getIdNumber())
-                .teamDTO(TeamMapper.toTeamDTO(agent.getTeam()))
-                .managerDTO(ManagerMapper.toManagerDTO(agent.getManager()))
+                .teamDTO(agent.getTeam() != null ? TeamMapper.toTeamDTO(agent.getTeam()) : null)
+                .managerDTO(agent.getManager() != null ? ManagerMapper.toManagerDTO(agent.getManager()) : null)
                 .build();
     }
 

@@ -23,6 +23,7 @@ public class ManagerMapper {
                 .teams(TeamMapper.toTeamList(managerDTO.getTeamDTOs()))
                 .build();
     }
+
     // Converts from Manager entity to ManagerDTO
     public static ManagerDTO toManagerDTO(Manager manager) {
         if (manager == null) {
@@ -32,13 +33,15 @@ public class ManagerMapper {
                 .id(manager.getId())
                 .firstName(manager.getFirstName())
                 .lastName(manager.getLastName())
-                .teamDTOs(TeamMapper.toTeamDTOList(manager.getTeams()))
+                .teamDTOs(manager.getTeams() != null ? TeamMapper.toTeamDTOList(manager.getTeams()) : null)
                 .build();
     }
+
     // Converts a list of Manager entities to a list of ManagerDTOs
     public static List<ManagerDTO> toManagerDTOList(List<Manager> managerList) {
         return managerList.stream().map(ManagerMapper::toManagerDTO).collect(Collectors.toList());
     }
+
     // Converts a list of ManagerDTOs to a list of Manager entities
     public static List<Manager> toManagerList(List<ManagerDTO> managerDTOList) {
         return managerDTOList.stream().map(ManagerMapper::toManager).collect(Collectors.toList());
